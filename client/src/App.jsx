@@ -17,6 +17,8 @@ class App extends Component {
     state = { tasks: [], currentTask: "" };
 
     //functions
+
+    //retrieves tasks on load
     async componentDidMount() {
         try {
             const { data } = await getTasks();
@@ -26,11 +28,12 @@ class App extends Component {
         }
     }
 
-
+    //handles create new task input change
     handleChange = ({ currentTarget: input }) => {
         this.setState({ currentTask: input.value });
     };
 
+    //handles add task
     handleSubmit = async (e) => {
         e.preventDefault();
         const originalTasks = this.state.tasks;
@@ -44,6 +47,7 @@ class App extends Component {
         }
     };
 
+    //handles check/uncheck task
     handleUpdate = async (currentTask) => {
         const originalTasks = this.state.tasks;
         try {
@@ -61,6 +65,7 @@ class App extends Component {
         }
     };
 
+    //handles delete task
     handleDelete = async (currentTask) => {
         const originalTasks = this.state.tasks;
         try {
