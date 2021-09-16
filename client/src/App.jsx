@@ -109,9 +109,8 @@ class App extends Component {
                                 placeholder="Create New Task"
                             />
                             <Button
-                                style={{ height: "40px", marginBottom: "5px" }}
+                                style={{ height: "40px"}}
                                 variant="outlined"
-                                color=""
                                 type="submit"
                             >
                                 <p>Add Task</p>
