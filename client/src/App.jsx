@@ -13,7 +13,7 @@ import {
 class App extends Component {
     //variables
 
-    //holds tasks
+    //sets state
     state = { tasks: [], currentTask: "" };
 
     //functions
@@ -83,7 +83,7 @@ class App extends Component {
     render() {
         //constants
 
-        //holds state
+        //declares tasks
         const { tasks } = this.state;
 
         // render component
