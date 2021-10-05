@@ -92,7 +92,7 @@ class App extends Component {
                 {/* articles app */}
                 <div className="App flex">
                     <Paper elevation={3} className="container">
-                        <h1 className="heading">Articles</h1>
+                        <h1 className="heading">Posts</h1>
                         {/* new article form */}
                         <form
                             onSubmit={this.handleSubmit}
@@ -113,7 +113,7 @@ class App extends Component {
                                 variant="outlined"
                                 type="submit"
                             >
-                                <p>Add article</p>
+                                <p>Add post</p>
                             </Button>
                         </form>
                         {/* displays stored articles */}
