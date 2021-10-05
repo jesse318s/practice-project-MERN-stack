@@ -1,11 +1,11 @@
-const Task = require("../models/task");
+const Article = require("../models/article");
 const express = require("express");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
     try {
-        const task = await new Task(req.body).save();
-        res.send(task);
+        const article = await new Article(req.body).save();
+        res.send(article);
     } catch (error) {
         res.send(error);
     }
@@ -13,8 +13,8 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        const tasks = await Task.find();
-        res.send(tasks);
+        const articles = await Article.find();
+        res.send(articles);
     } catch (error) {
         res.send(error);
     }
@@ -22,11 +22,11 @@ router.get("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     try {
-        const task = await Task.findOneAndUpdate(
+        const article = await Article.findOneAndUpdate(
             { _id: req.params.id },
             req.body
         );
-        res.send(task);
+        res.send(article);
     } catch (error) {
         res.send(error);
     }
@@ -34,8 +34,8 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        const task = await Task.findByIdAndDelete(req.params.id);
-        res.send(task);
+        const article = await Article.findByIdAndDelete(req.params.id);
+        res.send(article);
     } catch (error) {
         res.send(error);
     }

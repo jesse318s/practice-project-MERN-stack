@@ -3,79 +3,79 @@ import { Paper, TextField } from "@material-ui/core";
 import { Checkbox, Button } from "@material-ui/core";
 import { Component } from "react";
 import {
-    addTask,
-    getTasks,
-    updateTask,
-    deleteTask,
-} from "./services/taskServices";
+    addArticle,
+    getArticles,
+    updateArticle,
+    deleteArticle,
+} from "./services/articleServices";
 
 //component
 class App extends Component {
     //variables
 
     //sets state
-    state = { tasks: [], currentTask: "" };
+    state = { articles: [], currentArticle: "" };
 
     //functions
 
-    //retrieves tasks on load
+    //retrieves articles on load
     async componentDidMount() {
         try {
-            const { data } = await getTasks();
-            this.setState({ tasks: data });
+            const { data } = await getArticles();
+            this.setState({ articles: data });
         } catch (error) {
             console.log(error);
         }
     }
 
-    //handles create new task input change
+    //handles create new article input change
     handleChange = ({ currentTarget: input }) => {
-        this.setState({ currentTask: input.value });
+        this.setState({ currentArticle: input.value });
     };
 
-    //handles add task
+    //handles add article
     handleSubmit = async (e) => {
         e.preventDefault();
-        const originalTasks = this.state.tasks;
+        const originalArticles = this.state.articles;
         try {
-            const { data } = await addTask({ task: this.state.currentTask });
-            const tasks = originalTasks;
-            tasks.push(data);
-            this.setState({ tasks, currentTask: "" });
+            const { data } = await addArticle({ article: this.state.currentArticle });
+            const articles = originalArticles;
+            articles.push(data);
+            this.setState({ articles, currentArticle: "" });
         } catch (error) {
             console.log(error);
         }
     };
 
-    //handles check/uncheck task
-    handleUpdate = async (currentTask) => {
-        const originalTasks = this.state.tasks;
+    //handles check/uncheck article
+    handleUpdate = async (currentArticle) => {
+        const originalArticles = this.state.articles;
         try {
-            const tasks = [...originalTasks];
-            const index = tasks.findIndex((task) => task._id === currentTask);
-            tasks[index] = { ...tasks[index] };
-            tasks[index].completed = !tasks[index].completed;
-            this.setState({ tasks });
-            await updateTask(currentTask, {
-                completed: tasks[index].completed,
+            const articles = [...originalArticles];
+            const index = articles.findIndex((article) => article._id === currentArticle);
+            articles[index] = { ...articles[index] };
+            articles[index].completed = !articles[index].completed;
+            this.setState({ articles });
+            await updateArticle(currentArticle, {
+                completed: articles[index].completed,
             });
         } catch (error) {
-            this.setState({ tasks: originalTasks });
+            this.setState({ articles: originalArticles });
             console.log(error);
         }
     };
 
-    //handles delete task
-    handleDelete = async (currentTask) => {
-        const originalTasks = this.state.tasks;
+    //handles delete article
+    handleDelete = async (currentArticle) => {
+        const originalArticles = this.state.articles;
         try {
-            const tasks = originalTasks.filter(
-                (task) => task._id !== currentTask
+            const articles = originalArticles.filter(
+                (article) => article._id !== currentArticle
             );
-            this.setState({ tasks });
-            await deleteTask(currentTask);
+            this.setState({ articles });
+            await deleteArticle(currentArticle);
         } catch (error) {
-            this.setState({ tasks: originalTasks });
+            this.setState({ articles: originalArticles });
             console.log(error);
         }
     };
@@ -83,17 +83,17 @@ class App extends Component {
     render() {
         //constants
 
-        //declares tasks
-        const { tasks } = this.state;
+        //declares articles
+        const { articles } = this.state;
 
         // render component
         return (
             <>
-                {/* tasks app */}
+                {/* articles app */}
                 <div className="App flex">
                     <Paper elevation={3} className="container">
-                        <h1 className="heading">Tasks</h1>
-                        {/* new task form */}
+                        <h1 className="heading">Articles</h1>
+                        {/* new article form */}
                         <form
                             onSubmit={this.handleSubmit}
                             className="flex"
@@ -103,42 +103,42 @@ class App extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{ width: "80%" }}
-                                value={this.state.currentTask}
+                                value={this.state.currentArticle}
                                 required={true}
                                 onChange={this.handleChange}
-                                placeholder="Create New Task"
+                                placeholder="Create New Article"
                             />
                             <Button
                                 style={{ height: "40px"}}
                                 variant="outlined"
                                 type="submit"
                             >
-                                <p>Add Task</p>
+                                <p>Add article</p>
                             </Button>
                         </form>
-                        {/* displays stored tasks */}
+                        {/* displays stored articles */}
                         <div>
-                            {tasks.map((task) => (
+                            {articles.map((article) => (
                                 <Paper
-                                    key={task._id}
-                                    className="flex task_container"
+                                    key={article._id}
+                                    className="flex article_container"
                                 >
                                     <Checkbox
-                                        checked={task.completed}
-                                        onClick={() => this.handleUpdate(task._id)}
+                                        checked={article.completed}
+                                        onClick={() => this.handleUpdate(article._id)}
                                         style={{ color: "green" }}
                                     />
                                     <div
                                         className={
-                                            task.completed
-                                                ? "task line_through"
-                                                : "task"
+                                            article.completed
+                                                ? "article line_through"
+                                                : "article"
                                         }
                                     >
-                                        {task.task}
+                                        {article.article}
                                     </div>
                                     <Button
-                                        onClick={() => this.handleDelete(task._id)}
+                                        onClick={() => this.handleDelete(article._id)}
                                         variant="outlined"
                                         color="secondary"
                                     >

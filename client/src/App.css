@@ -28,12 +28,12 @@ body {
   padding: 10px;
 }
 
-.task_container {
+.article_container {
   margin: 10px 0;
   cursor: pointer;
 }
 
-.task {
+.article {
   flex-grow: 1;
   margin-left: 10px;
 }
