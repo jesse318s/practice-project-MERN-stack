@@ -110,7 +110,6 @@ class App extends Component {
                             <textarea
                                 style={{ width: "100%" }}
                                 value={this.state.currentBody}
-                                required={true}
                                 onChange={this.handleChangeBody}
                                 placeholder="Create New Body"
                                 type="text"
@@ -131,8 +130,7 @@ class App extends Component {
                                     <input
                                         type="checkbox"
                                         checked={article.completed}
-                                        onClick={() => this.handleUpdate(article._id)}
-                                        style={{ color: "green" }}
+                                        onChange={() => this.handleUpdate(article._id)}
                                     />
                                     <div className="article">
                                         <div
