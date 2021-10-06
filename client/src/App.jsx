@@ -1,6 +1,4 @@
 import "./App.css";
-import { Paper, TextField } from "@material-ui/core";
-import { Checkbox, Button } from "@material-ui/core";
 import { Component } from "react";
 import {
     addArticle,
@@ -14,7 +12,7 @@ class App extends Component {
     //variables
 
     //sets state
-    state = { articles: [], currentArticle: "", currentBody: "" };
+    state = { articles: [], currentTitle: "", currentBody: "" };
 
     //functions
 
@@ -28,9 +26,9 @@ class App extends Component {
         }
     }
 
-    //handles create new article input change
+    //handles new article form input change
     handleChange = ({ currentTarget: input }) => {
-        this.setState({ currentArticle: input.value });
+        this.setState({ currentTitle: input.value });
     };
 
     handleChangeBody = ({ currentTarget: input }) => {
@@ -42,25 +40,25 @@ class App extends Component {
         e.preventDefault();
         const originalArticles = this.state.articles;
         try {
-            const { data } = await addArticle({ article: this.state.currentArticle, body: this.state.currentBody });
+            const { data } = await addArticle({ article: this.state.currentTitle, body: this.state.currentBody });
             const articles = originalArticles;
             articles.push(data);
-            this.setState({ articles, currentArticle: "", currentBody: "" });
+            this.setState({ articles, currentTitle: "", currentBody: "" });
         } catch (error) {
             console.log(error);
         }
     };
 
     //handles check/uncheck article
-    handleUpdate = async (currentArticle) => {
+    handleUpdate = async (currentTitle) => {
         const originalArticles = this.state.articles;
         try {
             const articles = [...originalArticles];
-            const index = articles.findIndex((article) => article._id === currentArticle);
+            const index = articles.findIndex((article) => article._id === currentTitle);
             articles[index] = { ...articles[index] };
             articles[index].completed = !articles[index].completed;
             this.setState({ articles });
-            await updateArticle(currentArticle, {
+            await updateArticle(currentTitle, {
                 completed: articles[index].completed,
             });
         } catch (error) {
@@ -70,14 +68,14 @@ class App extends Component {
     };
 
     //handles delete article
-    handleDelete = async (currentArticle) => {
+    handleDelete = async (currentTitle) => {
         const originalArticles = this.state.articles;
         try {
             const articles = originalArticles.filter(
-                (article) => article._id !== currentArticle
+                (article) => article._id !== currentTitle
             );
             this.setState({ articles });
-            await deleteArticle(currentArticle);
+            await deleteArticle(currentTitle);
         } catch (error) {
             this.setState({ articles: originalArticles });
             console.log(error);
@@ -95,75 +93,67 @@ class App extends Component {
             <>
                 {/* articles app */}
                 <div className="App flex">
-                    <Paper elevation={3} className="container">
+                    <div className="container">
                         <h1 className="heading">Posts</h1>
                         {/* new article form */}
                         <form
                             onSubmit={this.handleSubmit}
-                            className="flex"
                             style={{ margin: "15px 0" }}
                         >
-                            <TextField
-                                variant="outlined"
-                                size="small"
-                                style={{ width: "80%" }}
-                                value={this.state.currentArticle}
+                            <input
+                                style={{ width: "100%" }}
+                                value={this.state.currentTitle}
                                 required={true}
                                 onChange={this.handleChange}
                                 placeholder="Create New Title"
                             />
-                            <TextField
-                                name="body"
-                                variant="outlined"
-                                size="small"
-                                style={{ width: "80%" }}
+                            <textarea
+                                style={{ width: "100%" }}
                                 value={this.state.currentBody}
                                 required={true}
                                 onChange={this.handleChangeBody}
                                 placeholder="Create New Body"
-                            />
-                            <Button
+                                type="text"
+                                rows="30" /><br />
+                            <input
                                 style={{ height: "40px" }}
-                                variant="outlined"
                                 type="submit"
-                            >
-                                <p>Add post</p>
-                            </Button>
+                                value="Add Post"
+                            />
                         </form>
                         {/* displays stored articles */}
                         <div>
                             {articles.map((article) => (
-                                <Paper
+                                <div
                                     key={article._id}
                                     className="flex article_container"
                                 >
-                                    <Checkbox
+                                    <input
+                                        type="checkbox"
                                         checked={article.completed}
                                         onClick={() => this.handleUpdate(article._id)}
                                         style={{ color: "green" }}
                                     />
-                                    <div
-                                        className={
-                                            article.completed
-                                                ? "article line_through"
-                                                : "article"
-                                        }
-                                    >
-                                        {article.article}<br />
+                                    <div className="article">
+                                        <container
+                                            className={
+                                                article.completed
+                                                    ? "line_through"
+                                                    : ""
+                                            }>{article.article}
+                                        </container><br />
                                         {article.createdAt}<br />
                                         {article.body}
                                     </div>
-                                    <Button
+                                    <btn
                                         onClick={() => this.handleDelete(article._id)}
-                                        variant="outlined"
-                                        color="secondary"
                                     >
                                         Delete
-                                    </Button>
-                                </Paper>
+                                    </btn>
+                                </div>
                             ))}
                         </div>
-                    </Paper>
+                    </div>
                 </div>
             </>
         );
