@@ -10,6 +10,11 @@ const articleSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    body: {
+        type: String,
+    }
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model("article", articleSchema);

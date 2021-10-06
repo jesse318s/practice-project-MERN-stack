@@ -14,7 +14,7 @@ class App extends Component {
     //variables
 
     //sets state
-    state = { articles: [], currentArticle: "" };
+    state = { articles: [], currentArticle: "", currentBody: "" };
 
     //functions
 
@@ -33,15 +33,19 @@ class App extends Component {
         this.setState({ currentArticle: input.value });
     };
 
+    handleChangeBody = ({ currentTarget: input }) => {
+        this.setState({ currentBody: input.value });
+    };
+
     //handles add article
     handleSubmit = async (e) => {
         e.preventDefault();
         const originalArticles = this.state.articles;
         try {
-            const { data } = await addArticle({ article: this.state.currentArticle });
+            const { data } = await addArticle({ article: this.state.currentArticle, body: this.state.currentBody });
             const articles = originalArticles;
             articles.push(data);
-            this.setState({ articles, currentArticle: "" });
+            this.setState({ articles, currentArticle: "", currentBody: "" });
         } catch (error) {
             console.log(error);
         }
@@ -106,10 +110,20 @@ class App extends Component {
                                 value={this.state.currentArticle}
                                 required={true}
                                 onChange={this.handleChange}
-                                placeholder="Create New Article"
+                                placeholder="Create New Title"
+                            />
+                            <TextField
+                                name="body"
+                                variant="outlined"
+                                size="small"
+                                style={{ width: "80%" }}
+                                value={this.state.currentBody}
+                                required={true}
+                                onChange={this.handleChangeBody}
+                                placeholder="Create New Body"
                             />
                             <Button
-                                style={{ height: "40px"}}
+                                style={{ height: "40px" }}
                                 variant="outlined"
                                 type="submit"
                             >
@@ -135,7 +149,9 @@ class App extends Component {
                                                 : "article"
                                         }
                                     >
-                                        {article.article}
+                                        {article.article}<br />
+                                        {article.createdAt}<br />
+                                        {article.body}
                                     </div>
                                     <Button
                                         onClick={() => this.handleDelete(article._id)}
