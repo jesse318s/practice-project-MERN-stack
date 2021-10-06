@@ -135,21 +135,21 @@ class App extends Component {
                                         style={{ color: "green" }}
                                     />
                                     <div className="article">
-                                        <container
+                                        <div
                                             className={
                                                 article.completed
                                                     ? "line_through"
                                                     : ""
                                             }>{article.article}
-                                        </container><br />
+                                        </div><br />
                                         {article.createdAt}<br />
                                         {article.body}
                                     </div>
-                                    <btn
+                                    <button
                                         onClick={() => this.handleDelete(article._id)}
                                     >
                                         Delete
-                                    </btn>
+                                    </button>
                                 </div>
                             ))}
                         </div>
