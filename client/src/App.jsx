@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     //handles new article form input change
-    handleChange = ({ currentTarget: input }) => {
+    handleChangeTitle = ({ currentTarget: input }) => {
         this.setState({ currentTitle: input.value });
     };
 
@@ -40,7 +40,7 @@ class App extends Component {
         e.preventDefault();
         const originalArticles = this.state.articles;
         try {
-            const { data } = await addArticle({ article: this.state.currentTitle, body: this.state.currentBody });
+            const { data } = await addArticle({ title: this.state.currentTitle, body: this.state.currentBody });
             const articles = originalArticles;
             articles.push(data);
             this.setState({ articles, currentTitle: "", currentBody: "" });
@@ -105,7 +105,7 @@ class App extends Component {
                                 style={{ width: "80%" }}
                                 value={this.state.currentTitle}
                                 required={true}
-                                onChange={this.handleChange}
+                                onChange={this.handleChangeTitle}
                                 placeholder="Create New Title"
                             />
                             <textarea
@@ -143,7 +143,7 @@ class App extends Component {
                                                     : ""
                                             }
                                         >
-                                            {article.article}</div><br />
+                                            {article.title}</div><br />
                                         Submitted: {article.createdAt.slice(0, 10)}<br />
                                         <div style={{ paddingTop: "10px" }}>{article.body}</div>
                                     </div>
