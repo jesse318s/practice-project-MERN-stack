@@ -1,6 +1,4 @@
 import "./App.css";
-import { Paper, TextField } from "@material-ui/core";
-import { Checkbox, Button } from "@material-ui/core";
 import { Component } from "react";
 import {
     addArticle,
@@ -94,76 +92,68 @@ class App extends Component {
         return (
             <>
                 {/* articles app */}
-                <div className="App flex">
-                    <Paper elevation={3} className="container">
-                        <h1 className="heading">Posts</h1>
+                <div className="flex">
+                    <div className="container">
+                        <h1 className="heading">Create Post</h1>
                         {/* new article form */}
                         <form
                             onSubmit={this.handleSubmit}
-                            className="flex"
                             style={{ margin: "15px 0" }}
                         >
-                            <TextField
-                                variant="outlined"
-                                size="small"
+                            <input
+                                type="text"
                                 style={{ width: "80%" }}
                                 value={this.state.currentArticle}
                                 required={true}
                                 onChange={this.handleChange}
                                 placeholder="Create New Title"
                             />
-                            <TextField
-                                name="body"
-                                variant="outlined"
-                                size="small"
+                            <textarea
+                                rows="30"
                                 style={{ width: "80%" }}
                                 value={this.state.currentBody}
-                                required={true}
                                 onChange={this.handleChangeBody}
                                 placeholder="Create New Body"
-                            />
-                            <Button
+                            /><br />
+                            <input
                                 style={{ height: "40px" }}
-                                variant="outlined"
                                 type="submit"
-                            >
-                                <p>Add post</p>
-                            </Button>
+                                value="Submit Post"
+                            />
                         </form>
                         {/* displays stored articles */}
+                        <h1 className="heading">Posts</h1>
                         <div>
                             {articles.map((article) => (
-                                <Paper
+                                <div
                                     key={article._id}
                                     className="flex article_container"
                                 >
-                                    <Checkbox
+                                    <input
+                                        type="checkbox"
                                         checked={article.completed}
-                                        onClick={() => this.handleUpdate(article._id)}
-                                        style={{ color: "green" }}
+                                        onChange={() => this.handleUpdate(article._id)}
                                     />
-                                    <div
-                                        className={
-                                            article.completed
-                                                ? "article line_through"
-                                                : "article"
-                                        }
-                                    >
-                                        {article.article}<br />
-                                        {article.createdAt}<br />
-                                        {article.body}
+                                    <div className="article">
+                                        <div
+                                            style={{ paddingTop: "10px" }}
+                                            className={
+                                                article.completed
+                                                    ? "completed"
+                                                    : ""
+                                            }
+                                        >
+                                            {article.article}</div><br />
+                                        Submitted: {article.createdAt.slice(0, 10)}<br />
+                                        <div style={{ paddingTop: "10px" }}>{article.body}</div>
                                     </div>
-                                    <Button
-                                        onClick={() => this.handleDelete(article._id)}
-                                        variant="outlined"
-                                        color="secondary"
-                                    >
+                                    <button onClick={() => this.handleDelete(article._id)}>
                                         Delete
-                                    </Button>
-                                </Paper>
+                                    </button>
+                                </div>
                             ))}
                         </div>
-                    </Paper>
+                    </div>
                 </div>
             </>
         );
