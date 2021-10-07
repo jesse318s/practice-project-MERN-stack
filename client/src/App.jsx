@@ -92,32 +92,33 @@ class App extends Component {
         return (
             <>
                 {/* articles app */}
-                <div className="App flex">
+                <div className="flex">
                     <div className="container">
-                        <h1 className="heading">Posts</h1>
+                        <h1 className="heading">Create Post</h1>
                         {/* new article form */}
                         <form
                             onSubmit={this.handleSubmit}
                             style={{ margin: "15px 0" }}
                         >
                             <input
-                                style={{ width: "100%" }}
-                                value={this.state.currentTitle}
+                                type="text"
+                                style={{ width: "80%" }}
+                                value={this.state.currentArticle}
                                 required={true}
                                 onChange={this.handleChange}
                                 placeholder="Create New Title"
                             />
                             <textarea
-                                style={{ width: "100%" }}
+                                rows="30"
+                                style={{ width: "80%" }}
                                 value={this.state.currentBody}
                                 onChange={this.handleChangeBody}
                                 placeholder="Create New Body"
-                                type="text"
-                                rows="30" /><br />
+                            /><br />
                             <input
                                 style={{ height: "40px" }}
                                 type="submit"
-                                value="Add Post"
+                                value="Submit Post"
                             />
                         </form>
                         {/* displays stored articles */}
@@ -135,18 +136,18 @@ class App extends Component {
                                     />
                                     <div className="article">
                                         <div
+                                            style={{ paddingTop: "10px" }}
                                             className={
                                                 article.completed
-                                                    ? "line_through"
+                                                    ? "completed"
                                                     : ""
-                                            }>{article.article}
-                                        </div><br />
-                                        {article.createdAt}<br />
-                                        {article.body}
+                                            }
+                                        >
+                                            {article.article}</div><br />
+                                        Submitted: {article.createdAt.slice(0, 10)}<br />
+                                        <div style={{ paddingTop: "10px" }}>{article.body}</div>
                                     </div>
-                                    <button
-                                        onClick={() => this.handleDelete(article._id)}
-                                    >
+                                    <button onClick={() => this.handleDelete(article._id)}>
                                         Delete
                                     </button>
                                 </div>
