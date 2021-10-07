@@ -103,7 +103,7 @@ class App extends Component {
                             <input
                                 type="text"
                                 style={{ width: "80%" }}
-                                value={this.state.currentArticle}
+                                value={this.state.currentTitle}
                                 required={true}
                                 onChange={this.handleChange}
                                 placeholder="Create New Title"
