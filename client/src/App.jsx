@@ -121,6 +121,7 @@ class App extends Component {
                             />
                         </form>
                         {/* displays stored articles */}
+                        <h1 className="heading">Posts</h1>
                         <div>
                             {articles.map((article) => (
                                 <div
