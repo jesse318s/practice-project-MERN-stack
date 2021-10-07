@@ -12,7 +12,7 @@ class App extends Component {
     //variables
 
     //sets state
-    state = { articles: [], currentArticle: "", currentBody: "" };
+    state = { articles: [], currentTitle: "", currentBody: "" };
 
     //functions
 
@@ -26,9 +26,9 @@ class App extends Component {
         }
     }
 
-    //handles create new article input change
+    //handles new article form input change
     handleChange = ({ currentTarget: input }) => {
-        this.setState({ currentArticle: input.value });
+        this.setState({ currentTitle: input.value });
     };
 
     handleChangeBody = ({ currentTarget: input }) => {
@@ -40,25 +40,25 @@ class App extends Component {
         e.preventDefault();
         const originalArticles = this.state.articles;
         try {
-            const { data } = await addArticle({ article: this.state.currentArticle, body: this.state.currentBody });
+            const { data } = await addArticle({ article: this.state.currentTitle, body: this.state.currentBody });
             const articles = originalArticles;
             articles.push(data);
-            this.setState({ articles, currentArticle: "", currentBody: "" });
+            this.setState({ articles, currentTitle: "", currentBody: "" });
         } catch (error) {
             console.log(error);
         }
     };
 
     //handles check/uncheck article
-    handleUpdate = async (currentArticle) => {
+    handleUpdate = async (currentTitle) => {
         const originalArticles = this.state.articles;
         try {
             const articles = [...originalArticles];
-            const index = articles.findIndex((article) => article._id === currentArticle);
+            const index = articles.findIndex((article) => article._id === currentTitle);
             articles[index] = { ...articles[index] };
             articles[index].completed = !articles[index].completed;
             this.setState({ articles });
-            await updateArticle(currentArticle, {
+            await updateArticle(currentTitle, {
                 completed: articles[index].completed,
             });
         } catch (error) {
@@ -68,14 +68,14 @@ class App extends Component {
     };
 
     //handles delete article
-    handleDelete = async (currentArticle) => {
+    handleDelete = async (currentTitle) => {
         const originalArticles = this.state.articles;
         try {
             const articles = originalArticles.filter(
-                (article) => article._id !== currentArticle
+                (article) => article._id !== currentTitle
             );
             this.setState({ articles });
-            await deleteArticle(currentArticle);
+            await deleteArticle(currentTitle);
         } catch (error) {
             this.setState({ articles: originalArticles });
             console.log(error);
