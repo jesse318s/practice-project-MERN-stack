@@ -36,7 +36,7 @@ form {
   margin-left: 10px;
 }
 
-.completed::after {
+.article_completed::after {
   content: " - Completed";
   color: blue;
 }

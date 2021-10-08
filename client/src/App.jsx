@@ -136,10 +136,14 @@ class App extends Component {
                                     />
                                     <div className="article">
                                         <div
-                                            style={{ paddingTop: "10px" }}
+                                            style={{
+                                                paddingTop: "10px",
+                                                position: "relative",
+                                                top: "15px"
+                                            }}
                                             className={
                                                 article.completed
-                                                    ? "completed"
+                                                    ? "article_completed"
                                                     : ""
                                             }
                                         >
