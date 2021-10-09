@@ -67,6 +67,22 @@ class App extends Component {
         }
     };
 
+    //handles edit article
+    handleEdit = async (currentTitle) => {
+        const originalArticles = this.state.articles;
+        try {
+            const articles = [...originalArticles];
+            const index = articles.findIndex((article) => article._id === currentTitle);
+            articles[index] = { ...articles[index] };
+            this.state.currentTitle = articles[index].title;
+            this.state.currentBody = articles[index].body;
+            this.setState({ articles });
+        } catch (error) {
+            this.setState({ articles: originalArticles });
+            console.log(error);
+        }
+    };
+
     //handles delete article
     handleDelete = async (currentTitle) => {
         const originalArticles = this.state.articles;
@@ -150,6 +166,9 @@ class App extends Component {
                                             {article.title}</div><br />
                                         Submitted: {article.createdAt.slice(0, 10)}<br />
                                         <div style={{ paddingTop: "10px" }}>{article.body}</div><br />
+                                        <button style={{ color: "blue" }} onClick={() => this.handleEdit(article._id)}>
+                                            Edit
+                                        </button>
                                         <button style={{ color: "red" }} onClick={() => this.handleDelete(article._id)}>
                                             Delete
                                         </button>
