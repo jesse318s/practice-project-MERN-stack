@@ -1,17 +1,8 @@
 /* styles */
 
-body {
-  margin: 0;
-}
-
-form {
-  text-align: center;
-}
-
 .heading {
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
 }
 
 .flex {
@@ -20,7 +11,8 @@ form {
   align-items: center;
 }
 
-.container {
+.app_container {
+  text-align: center;
   width: 500px;
   min-height: 300px;
   padding: 10px;
@@ -29,6 +21,9 @@ form {
 .article_container {
   margin: 10px 0;
   cursor: pointer;
+  border-style: solid;
+  padding: 10px;
+  overflow-wrap: anywhere;
 }
 
 .article {

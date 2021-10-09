@@ -93,7 +93,7 @@ class App extends Component {
             <>
                 {/* articles app */}
                 <div className="flex">
-                    <div className="container">
+                    <div className="app_container">
                         <h1 className="heading">Create Post</h1>
                         {/* new article form */}
                         <form
@@ -109,7 +109,7 @@ class App extends Component {
                                 placeholder="Create New Title"
                             />
                             <textarea
-                                rows="30"
+                                rows="20"
                                 style={{ width: "80%" }}
                                 value={this.state.currentBody}
                                 onChange={this.handleChangeBody}
@@ -149,11 +149,11 @@ class App extends Component {
                                         >
                                             {article.title}</div><br />
                                         Submitted: {article.createdAt.slice(0, 10)}<br />
-                                        <div style={{ paddingTop: "10px" }}>{article.body}</div>
+                                        <div style={{ paddingTop: "10px" }}>{article.body}</div><br />
+                                        <button onClick={() => this.handleDelete(article._id)}>
+                                            Delete
+                                        </button>
                                     </div>
-                                    <button onClick={() => this.handleDelete(article._id)}>
-                                        Delete
-                                    </button>
                                 </div>
                             ))}
                         </div>
