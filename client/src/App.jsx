@@ -150,7 +150,7 @@ class App extends Component {
                                             {article.title}</div><br />
                                         Submitted: {article.createdAt.slice(0, 10)}<br />
                                         <div style={{ paddingTop: "10px" }}>{article.body}</div><br />
-                                        <button onClick={() => this.handleDelete(article._id)}>
+                                        <button style={{ color: "red" }} onClick={() => this.handleDelete(article._id)}>
                                             Delete
                                         </button>
                                     </div>
