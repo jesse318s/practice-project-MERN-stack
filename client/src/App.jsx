@@ -169,7 +169,10 @@ class App extends Component {
                                         <button style={{ color: "blue" }} onClick={() => this.handleEdit(article._id)}>
                                             Edit
                                         </button>
-                                        <button style={{ color: "red" }} onClick={() => this.handleDelete(article._id)}>
+                                        <button style={{ color: "red" }} onClick={() => {
+                                            if (window.confirm('Are you sure you wish to delete this item? This cannot be undone.'))
+                                                this.handleDelete(article._id)
+                                        }}>
                                             Delete
                                         </button>
                                     </div>
