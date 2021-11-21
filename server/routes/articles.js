@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        const articles = await Article.find();
+        const articles = await Article.find().sort({ createdAt: -1 });
         res.send(articles);
     } catch (error) {
         res.send(error);

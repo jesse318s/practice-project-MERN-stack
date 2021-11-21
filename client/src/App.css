@@ -13,7 +13,7 @@
 
 .app_container {
   text-align: center;
-  width: 500px;
+  width: 50vw;
   min-height: 300px;
   padding: 10px;
 }
@@ -34,4 +34,12 @@
 .article_completed::after {
   content: " - Completed";
   color: blue;
+}
+
+/*phone media query*/
+
+@media screen and (max-width: 736px) {
+  .app_container {
+    width: 95vw;
+  }
 }

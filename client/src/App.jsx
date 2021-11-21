@@ -114,11 +114,11 @@ class App extends Component {
                         {/* new article form */}
                         <form
                             onSubmit={this.handleSubmit}
-                            style={{ margin: "15px 0" }}
+                            style={{ textAlign: "center", margin: "10px" }}
                         >
                             <input
                                 type="text"
-                                style={{ width: "80%" }}
+                                style={{ width: "100%" }}
                                 value={this.state.currentTitle}
                                 required={true}
                                 onChange={this.handleChangeTitle}
@@ -126,11 +126,20 @@ class App extends Component {
                             />
                             <textarea
                                 rows="20"
-                                style={{ width: "80%" }}
+                                style={{ width: "100%" }}
                                 value={this.state.currentBody}
                                 onChange={this.handleChangeBody}
                                 placeholder="Create New Body"
                             /><br />
+                            <input
+                                style={{ height: "40px", color: "red" }}
+                                type="reset"
+                                value="Clear"
+                                onClick={() => {
+                                    if (window.confirm('Are you sure you wish to clear this post? This cannot be undone.'))
+                                        this.setState({ currentTitle: "", currentBody: "" });
+                                }}
+                            />
                             <input
                                 style={{ height: "40px" }}
                                 type="submit"
