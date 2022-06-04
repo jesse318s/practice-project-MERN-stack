@@ -10,7 +10,7 @@ This repository aims to assist you in beginning work on a MERN stack application
 
 Since this project will hold both the client application and the server application there will be node modules in two different places. First run `npm install` from the root.
 
-For more information on deploying to heroku reference the extra resources at the bottom of this file.
+This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file. 
 
 
 ### `yarn workspace server build`
@@ -25,12 +25,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## File structure
 #### `client` - Holds the client application
-- #### `public` - This holds all of our static files aside from some assets
+- #### `public` - This holds all of our static files
 - #### `src`
-    - #### `assets` - This holds our static assets that aren't stored in the public file
-    - #### `components` - This holds our components that aren't pages
-    - #### `constants` - This holds our constant objects that are used in our components
-    - #### `pages` - This holds our components that are routed to as pages
     - #### `services` - Holds all of our services
     - #### `App.jsx` - This is what renders the primary MERN app, should not change
     - #### `index.js` - This is what renders all of our browser routes
