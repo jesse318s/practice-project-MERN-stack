@@ -1,5 +1,5 @@
 const connection = require("./db");
-require('dotenv').config();
+require("dotenv").config();
 const articles = require("./routes/articles");
 const cors = require("cors");
 const express = require("express");
