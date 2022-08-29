@@ -8,18 +8,14 @@ This project does not have a mongoDB connection setup.
 
 ## Getting Started
 
-This repository aims to assist you in beginning work on a MERN stack application for heroku deployment with a solid file structure as a foundation.
+This repository aims to assist you in beginning work on a MERN stack application for deployment with a solid file structure as a foundation.
 
 Since this project will hold both the client application and the server application there will be node modules in two different places. First run `npm install` from the root.
 
-This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file.
-
 ### `yarn workspace server build`
 
-Builds the app for production to the `build` folder.<br>
+Builds the app for production to the `build` folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-If deploying to heroku this does not need to be run since it is handled by the heroku-postbuild script<br>
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
@@ -53,5 +49,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Learn More
 
 To learn how to setup a local MongoDB instance for testing, check out how to [connect to MongoDB](https://docs.mongodb.com/guides/server/drivers/).
-
-To learn how to deploy a full-stack web app to heroku, check out [this great guide](https://daveceddia.com/deploy-react-express-app-heroku/).
