@@ -1,9 +1,12 @@
+const mongoose = require("mongoose");
 const connection = require("./db");
 require("dotenv").config();
 const articles = require("./routes/articles");
 const cors = require("cors");
 const express = require("express");
 const app = express();
+
+mongoose.set('strictQuery', false);
 
 connection();
 
