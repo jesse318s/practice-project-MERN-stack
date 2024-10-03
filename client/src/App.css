@@ -36,7 +36,6 @@
 }
 
 /*phone media query*/
-
 @media screen and (max-width: 736px) {
   .app_container {
     width: 95vw;
